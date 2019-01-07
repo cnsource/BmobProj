@@ -22,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
         Bmob.initialize(this, "6efee115cb0d6e46cedd5a556ae2b9a0");
         requestPermissions(Init().toArray(new String[Init().size()]),1);
         if (BmobUser.isLogin()){
-            startActivity(new Intent(this,UserMain.class));
+            startActivity(new Intent(getApplicationContext(),UserMain.class));
             finish();
         } else {
-
+            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
         }
     }
     private List<String> Init(){
