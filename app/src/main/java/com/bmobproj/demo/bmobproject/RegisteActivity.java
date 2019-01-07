@@ -1,5 +1,6 @@
 package com.bmobproj.demo.bmobproject;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.io.File;
@@ -48,7 +50,7 @@ public class RegisteActivity extends AppCompatActivity {
         });
         reg_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 if (reg_pwd.getText().toString().equals(reg_pwd2.getText().toString())){
                     User user=new User();
                     user.setUsername(reg_name.getText().toString());
@@ -57,8 +59,9 @@ public class RegisteActivity extends AppCompatActivity {
                         @Override
                         public void done(final User user, BmobException e) {
                             if (e==null){
-                                final BmobFile bmobFile=new BmobFile(new File(getExternalCacheDir()+"/userIcon"));
+                                final BmobFile bmobFile=new BmobFile(new File(getExternalCacheDir()+"/userIcon.jpg"));
                                 bmobFile.uploadblock(new UploadFileListener() {
+
                                     @Override
                                     public void done(BmobException e) {
                                         user.setUserIcon(bmobFile);
@@ -66,12 +69,13 @@ public class RegisteActivity extends AppCompatActivity {
                                             @Override
                                             public void done(BmobException e) {
                                                 if (e!=null){
-                                                    Toast.makeText(RegisteActivity.this, "头像上传失败", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(RegisteActivity.this, "头像上传失败"+e.getMessage(), Toast.LENGTH_SHORT).show();
                                                 }
                                             }
                                         });
                                     }
                                 });
+
                                 Toast.makeText(RegisteActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getApplicationContext(),UserMain.class));
                                 finish();
@@ -99,7 +103,7 @@ public class RegisteActivity extends AppCompatActivity {
             try {
                 Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
                 reg_Icon.setImageBitmap(bitmap);
-                File file = new File(getExternalCacheDir().toString(), "userIcon");
+                File file = new File(getExternalCacheDir().toString(), "userIcon.jpg");
                 FileOutputStream fos = new FileOutputStream(file);
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                 fos.close();
