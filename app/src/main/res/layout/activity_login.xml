@@ -1,9 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    android:orientation="vertical"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:id="@+id/user_name"
+        android:hint="用户名"
+        />
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/user_pwd"
+        android:hint="mima"
+        android:inputType="textPassword"/>
+    <Button
+        android:layout_marginTop="15dp"
+        android:text="登录"
+        android:layout_width="144dp"
+        android:layout_height="48dp"
+        android:id="@+id/user_login_btn"/>
+    <RelativeLayout
+        android:layout_marginTop="15dp"
+        android:layout_width="200dp"
+        android:layout_height="30dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/user_registe"
+            android:gravity="center|left"
+            android:layout_gravity="left"
+            android:text="新用户注册"/>
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/user_lostpwd"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center|right"
+            android:text="忘记密码" />
+    </RelativeLayout>
+</LinearLayout>

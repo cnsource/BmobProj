@@ -36,7 +36,8 @@
             android:authorities="com.bmobproj.demo.bmobproject.BmobContentProvider" />
 
         <activity android:name=".UserMain" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisteActivity"></activity>
     </application>
 
 </manifest>
