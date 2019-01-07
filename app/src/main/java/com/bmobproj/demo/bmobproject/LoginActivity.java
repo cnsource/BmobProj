@@ -37,6 +37,7 @@ private TextView user_registe,user_lost_pwd;
                     public void done(User user, BmobException e) {
                         if (e==null){
                             startActivity(new Intent(getApplicationContext(),UserMain.class));
+                            finish();
                         } else
                             Toast.makeText(LoginActivity.this, "账号或密码错误", Toast.LENGTH_SHORT).show();
                     }
@@ -47,6 +48,7 @@ private TextView user_registe,user_lost_pwd;
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),RegisteActivity.class));
+
             }
         });
     }

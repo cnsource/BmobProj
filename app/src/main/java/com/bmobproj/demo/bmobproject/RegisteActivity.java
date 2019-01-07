@@ -75,6 +75,7 @@ public class RegisteActivity extends AppCompatActivity {
                                 Toast.makeText(RegisteActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getApplicationContext(),UserMain.class));
                                 finish();
+                                MainActivity.minstence.finish();
                             } else {
                                 Toast.makeText(RegisteActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
                             }
@@ -91,21 +92,28 @@ public class RegisteActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        
         Uri uri=data.getData();
-        ContentResolver cr=getContentResolver();
-        try {
-            Bitmap bitmap=BitmapFactory.decodeStream(cr.openInputStream(uri));
-            reg_Icon.setImageBitmap(bitmap);
-            File file=new File(getExternalCacheDir().toString(),"userIcon");
-            FileOutputStream fos=new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.JPEG,100,fos);
-            fos.close();
-        } catch (FileNotFoundException e) {
-            Toast.makeText(this, "没有选择文件", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        } catch (IOException e) {
-            Toast.makeText(this, "文件保存失败", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
+        if (uri!=null) {
+            ContentResolver cr = getContentResolver();
+            try {
+                Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
+                reg_Icon.setImageBitmap(bitmap);
+                File file = new File(getExternalCacheDir().toString(), "userIcon");
+                FileOutputStream fos = new FileOutputStream(file);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                fos.close();
+            } catch (FileNotFoundException e) {
+                Toast.makeText(this, "没有选择文件", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            } catch (IOException e) {
+                Toast.makeText(this, "文件保存失败", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+        }
+        else {
+            Toast.makeText(this, "没有选择图像", Toast.LENGTH_SHORT).show();
         }
     }
+    
 }

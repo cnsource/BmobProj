@@ -15,7 +15,6 @@
     <!-- 允许读取手机状态 用于创建BmobInstallation -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -30,14 +29,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <provider
-            android:name="cn.bmob.v3.util.BmobContentProvider"
-            android:authorities="com.bmobproj.demo.bmobproject.BmobContentProvider" />
-
         <activity android:name=".UserMain" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisteActivity"></activity>
+        <activity android:name=".RegisteActivity">
+        </activity>
+        <provider
+            android:name="cn.bmob.v3.util.BmobContentProvider"
+            android:authorities="com.bmobproj.demo.bmobproject.BmobContentProvider">
+        </provider>
     </application>
 
 </manifest>
